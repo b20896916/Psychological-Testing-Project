@@ -46,3 +46,14 @@ kurtosis   -1.458988   -0.071162            -0.355087   -0.907278  ...   -0.7147
 1. Prepare the cleaned data from the previous step.
 2. Run `python descriptive_stat.py`.
 
+## Item Reliability
+### Descriptive
+It computes the item-total correlation and the item reliability index for each item, including age, sex, and relationship status.
+
+It prints out the Cronbach's alpha of the questionnaire.
+
+The output, excluding Cronbach's alpha, is in a csv file named `item_reli.csv`.
+
+### Procedure
+1. Prepare the cleaned data from the previous step.
+2. Run `python item_reliability.py`.
