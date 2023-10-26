@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 data = "cleaned_data.csv"
 df_in = pd.read_csv(data)
