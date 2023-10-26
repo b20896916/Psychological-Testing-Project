@@ -16,7 +16,7 @@ It converts the 5-point Likert scale from text to numbers, including reversing r
 
 It converts relationship status to dichotomous variable (0 for single and 1 otherwise), sex to dichotomous variable (0 for women and 1 for men).
 
-It adds a column `Total` meaming the total score of a participant.
+It adds a column `Total` meaning the total score of a participant.
 
 The output format the same as the input, in a csv file named `cleaned_data.csv`.
 ### Procedure
