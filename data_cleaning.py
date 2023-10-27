@@ -1,5 +1,6 @@
 import pandas as pd
 
+K = 0
 file = "responses.csv"
 df = pd.read_csv(file)
 # drop the first two columns
@@ -18,6 +19,8 @@ def function_1(x):
    tmp = x.split('.')
    if len(tmp) == 1:
        return f"{tmp[0]}"
+   global K
+   K += 1
    return f"{tmp[0]}."
 df.rename(columns=function_1, inplace=True)
 
@@ -25,9 +28,17 @@ df.rename(columns=function_1, inplace=True)
 mapping = {"非常同意": 5, "同意": 4, "普通": 3, "不同意": 2, "非常不同意": 1}
 df.replace(mapping, inplace=True)
 reverse_scale = {"17.", "34.", "42."}
+n = len(reverse_scale)
 for i in reverse_scale:
    df[i] = 6 - df[i]
 df["Total"] = df.iloc[:, 3:].sum(axis=1)
+
+# drop the rows acquiescently answered
+df["diff"] = (df["Total"] - (df["17."] + df["34."] + df["42."]))/(K-n) - (df["17."] + df["34."] + df["42."])/n
+df.drop(df[abs(df["diff"]) >= 2].index, inplace=True)
+df.drop(["diff"], axis=1, inplace=True)
+# drop the rows with constant values
+df.drop(df[df.iloc[:, 3:-1].std(axis=1) == 0].index, inplace=True)
 
 # convert sex and relationship status to numerical values
 sex_mapping = {"生理男性": 1, "生理女性": 0}

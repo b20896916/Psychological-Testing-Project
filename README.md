@@ -14,6 +14,8 @@ It removes the emails left to draw prizes, timestamps of the responses, and the 
 
 It converts the 5-point Likert scale from text to numbers, including reversing reverse-scaled questions.
 
+It removes the acquiescently answered responses.
+
 It converts relationship status to dichotomous variable (0 for single and 1 otherwise), sex to dichotomous variable (0 for women and 1 for men).
 
 It adds a column `Total` meaning the total score of a participant.
@@ -45,6 +47,14 @@ kurtosis   -1.458988   -0.071162            -0.355087   -0.907278  ...   -0.7147
 ### Procedure
 1. Prepare the cleaned data from the previous step.
 2. Run `python descriptive_stat.py`.
+
+## Interitem Correlation
+### Description
+It computes the interitem correlation and saves the output file to `interitem_corr.csv`.
+
+### Procedure
+1. Prepare the cleaned data from the previous step.
+2. Run `python interitem_corr.py`.
 
 ## Item Reliability
 ### Descriptive
