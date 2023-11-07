@@ -27,7 +27,7 @@ The output format the same as the input, in a csv file named `cleaned_data.csv`.
 
 ## Descriptive Statistics
 ### Description
-It generates the count, mean, std, min, quartiles, max, skewness, and kurtosis of each item, including age, sex, and relationship status.
+It generates the count, mean, std, min, quartiles, max, skewness, kurtosis and **mean difference** (Nov. 7 update, high 1/3 minus low 1/3) of each item, including age, sex, and relationship status.
 
 The output is in a csv file named `descriptive_stat.csv`, below is an example:
 ```
@@ -58,7 +58,7 @@ It computes the interitem correlation and saves the output file to `interitem_co
 
 ## Item Reliability
 ### Descriptive
-It computes the item-total correlation and the item reliability index for each item, including age, sex, and relationship status.
+It computes the item-total correlation (with and without itself) and the item reliability index for each item, including age, sex, and relationship status.
 
 It prints out the Cronbach's alpha of the questionnaire.
 
