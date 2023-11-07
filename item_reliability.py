@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 data = "cleaned_data.csv"
 df_in = pd.read_csv(data)
@@ -7,6 +8,11 @@ df_in = pd.read_csv(data)
 df_out = pd.DataFrame(columns=df_in.columns)
 df_out.loc['item_total_corr'] = df_in.corrwith(df_in['Total']) 
 df_out.loc['item_reliability'] = df_in.corrwith(df_in['Total']) * df_in.std()
+for i in df_in.columns[:3]:
+    df_out.loc['item_total-i_corr', i] = np.corrcoef(df_in[i], df_in['Total'])[0, 1]
+for i in df_in.columns[3:-1]:
+    df_out.loc['item_total-i_corr', i] = np.corrcoef(df_in[i], df_in['Total']-df_in[i])[0, 1]
+
 
 df_out.to_csv("item_reli.csv")
 
