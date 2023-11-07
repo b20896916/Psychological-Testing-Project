@@ -7,7 +7,6 @@ df = pd.read_csv(file)
 df.drop(df.columns[0:2], axis=1, inplace=True)
 df.drop(df.columns[-1], axis=1, inplace=True)
 
-
 # drop the rows with missing values
 df.dropna(inplace=True)
 
@@ -37,6 +36,7 @@ df["Total"] = df.iloc[:, 3:].sum(axis=1)
 df["diff"] = (df["Total"] - (df["17."] + df["34."] + df["42."]))/(K-n) - (df["17."] + df["34."] + df["42."])/n
 df.drop(df[abs(df["diff"]) >= 2].index, inplace=True)
 df.drop(["diff"], axis=1, inplace=True)
+
 # drop the rows with constant values
 df.drop(df[df.iloc[:, 3:-1].std(axis=1) == 0].index, inplace=True)
 
@@ -45,5 +45,14 @@ sex_mapping = {"生理男性": 1, "生理女性": 0}
 relation_mapping = {"單身": 0, "有伴侶": 1}
 df.replace(sex_mapping, inplace=True)
 df.replace(relation_mapping, inplace=True)
+
+# keep the columns we decided to use, comment the lines below if you want to use the original data
+# kept = ["1.", "4.", "11.", "12.", "13.", "15.", "19.", "21.", "24.", "25.", "26.", "27.", "28.", "29.", "30.", "36.", "39.", "40.", "41.", "43.", "44.", "46."]
+# df = pd.concat([df.iloc[:, 0:3], df[kept]], axis=1)
+# df["Total"] = df.iloc[:, 3:].sum(axis=1)
+
+# filter out those have relationship partner, comment the line below if you want to keep them
+df.drop(df[df["Relationship_Status"] == "1"].index, inplace=True)
+
 
 df.to_csv("cleaned_data.csv", index=False)
