@@ -47,12 +47,17 @@ df.replace(sex_mapping, inplace=True)
 df.replace(relation_mapping, inplace=True)
 
 # keep the columns we decided to use, comment the lines below if you want to use the original data
-# kept = ["1.", "4.", "11.", "12.", "13.", "15.", "19.", "21.", "24.", "25.", "26.", "27.", "28.", "29.", "30.", "36.", "39.", "40.", "41.", "43.", "44.", "46."]
-# df = pd.concat([df.iloc[:, 0:3], df[kept]], axis=1)
-# df["Total"] = df.iloc[:, 3:].sum(axis=1)
+if input("Do you want to use the selected questions only? (y/n) ") == 'y':
+   kept = ["1.", "4.", "11.", "12.", "13.", "15.", "19.", "21.", "24.", "25.", "26.", "27.", "28.", "29.", "30.", "36.", "39.", "40.", "41.", "43.", "44.", "46."]
+   df = pd.concat([df.iloc[:, 0:3], df[kept]], axis=1)
+   df["Total"] = df.iloc[:, 3:].sum(axis=1)
 
 # filter out those have relationship partner, comment the line below if you want to keep them
-df.drop(df[df["Relationship_Status"] == "1"].index, inplace=True)
+if input("Do you want to filter responses according to whether they have relationship partner? (y/n) ") == 'y':
+   if input("Do you want to **keep** those have relationship partner (y) or those single (n)? ") == 'y':
+       df.drop(df[df["Relationship_Status"] == "0"].index, inplace=True)
+   else:
+      df.drop(df[df["Relationship_Status"] == "1"].index, inplace=True)
 
 
 df.to_csv("cleaned_data.csv", index=False)
