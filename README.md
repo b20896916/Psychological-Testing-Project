@@ -5,6 +5,7 @@ This is the README file of data processing code for Psychological testing.
 - Python 3
 - pandas
 - numpy
+- os
 
 ## Data Cleaning
 ### Description
@@ -46,3 +47,13 @@ It computes the interitem correlation and saves the output file to `interitem_co
 ### Procedure
 1. Prepare the cleaned data from the previous step.
 2. Run `python interitem_corr.py`.
+
+## Histogram
+### Description
+It generates histograms for each item in the directory named `histograms`. It will create the directory if it did not exist.
+
+For example, histogram of item 1 will be `histograms/hist_1.png`.
+
+### Procedure
+1. Prepare the cleaned data from the previous step.
+2. Run `python histogram.py`.

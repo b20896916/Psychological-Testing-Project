@@ -55,9 +55,9 @@ if input("Do you want to use the selected questions only? (y/n) ") == 'y':
 # filter out those have relationship partner, comment the line below if you want to keep them
 if input("Do you want to filter responses according to whether they have relationship partner? (y/n) ") == 'y':
    if input("Do you want to **keep** those have relationship partner (y) or those single (n)? ") == 'y':
-       df.drop(df[df["Relationship_Status"] == "0"].index, inplace=True)
+       df.drop(df[df["Relationship_Status"] == 0].index, inplace=True)
    else:
-      df.drop(df[df["Relationship_Status"] == "1"].index, inplace=True)
+      df.drop(df[df["Relationship_Status"] == 1].index, inplace=True)
 
 
 df.to_csv("cleaned_data.csv", index=False)
